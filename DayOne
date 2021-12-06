@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 
 namespace D1
 {
@@ -13,19 +12,13 @@ namespace D1
             string[] asInputLines = System.IO.File.ReadAllLines(@"D:\Misc\Advent\D1\Input.txt");
             Console.WriteLine("Number of entries = " + asInputLines.Length);
 
-            int iIncreases = 0;
-            int iFirstvalue = 0;
-            int iSecondvalue = 0;
-                   
+            int[] aiValues = Array.ConvertAll(asInputLines, int.Parse);
 
-            for(int i = 0; i < asInputLines.Length - 1; i++)
+            int iIncreases = 0;                  
+
+            for(int i = 0; i < aiValues.Length - 1; i++)
             {
-                
-                Int32.TryParse(asInputLines[i], out iFirstvalue);
-                
-                Int32.TryParse(asInputLines[i+1], out iSecondvalue);
-
-                iIncreases += iSecondvalue>iFirstvalue ? 1 : 0;
+                iIncreases += aiValues[i+1]>aiValues[i] ? 1 : 0;
             }
 
             Console.WriteLine("Number of increases = " + iIncreases);
@@ -34,16 +27,15 @@ namespace D1
             #region Q2
 
             int iNewIncreases = 0;
-            int iNewFirstValue = 0;
-            int iNewSecondValue = 0;
 
-            for(int i = 0; i < asInputLines.Length - 1; i++)
+
+            for(int i = 0; i < aiValues.Length - 1; i++)
             {
-                if(i+3 < asInputLines.Length)
+                if(i+3 < aiValues.Length)
                 {
-                    iNewFirstValue = Int32.Parse(asInputLines[i]) + Int32.Parse(asInputLines[i+1]) + Int32.Parse(asInputLines[i+2]);
-                    iNewSecondValue = Int32.Parse(asInputLines[i+1]) + Int32.Parse(asInputLines[i+2]) + Int32.Parse(asInputLines[i+3]);
-                    iNewIncreases += iNewSecondValue > iNewFirstValue ? 1 : 0;
+                    int iFirstSum = aiValues[i] + aiValues[i+1] + aiValues[i+2];
+                    int iSecondSum = aiValues[i+1] + aiValues[i+2] + aiValues[i+3];
+                    iNewIncreases += iSecondSum > iFirstSum ? 1 : 0;
                 }
             }
 
