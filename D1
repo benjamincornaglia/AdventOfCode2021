@@ -1,0 +1,34 @@
+using System;
+using System.IO;
+
+namespace D1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+
+            string[] asInputLines = System.IO.File.ReadAllLines(@"D:\Misc\Advent\D1\Input.txt");
+            Console.WriteLine("Number of entries = " + asInputLines.Length);
+
+            int iIncreases = 0;
+            int iFirstvalue = 0;
+            int iSecondvalue = 0;
+
+
+            for(int i = 0; i < asInputLines.Length - 1; i++)
+            {
+                
+                Int32.TryParse(asInputLines[i], out iFirstvalue);
+                
+                Int32.TryParse(asInputLines[i+1], out iSecondvalue);
+
+                iIncreases += iSecondvalue>iFirstvalue ? 1 : 0;
+            }
+
+            Console.WriteLine("Number of increases = " + iIncreases);
+
+        }
+    }
+}
