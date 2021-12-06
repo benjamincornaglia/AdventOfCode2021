@@ -1,0 +1,55 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+
+namespace D1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            #region Q1
+            string[] asInputLines = System.IO.File.ReadAllLines(@"D:\Misc\Advent\D1\Input.txt");
+            Console.WriteLine("Number of entries = " + asInputLines.Length);
+
+            int iIncreases = 0;
+            int iFirstvalue = 0;
+            int iSecondvalue = 0;
+                   
+
+            for(int i = 0; i < asInputLines.Length - 1; i++)
+            {
+                
+                Int32.TryParse(asInputLines[i], out iFirstvalue);
+                
+                Int32.TryParse(asInputLines[i+1], out iSecondvalue);
+
+                iIncreases += iSecondvalue>iFirstvalue ? 1 : 0;
+            }
+
+            Console.WriteLine("Number of increases = " + iIncreases);
+            #endregion
+
+            #region Q2
+
+            int iNewIncreases = 0;
+            int iNewFirstValue = 0;
+            int iNewSecondValue = 0;
+
+            for(int i = 0; i < asInputLines.Length - 1; i++)
+            {
+                if(i+3 < asInputLines.Length)
+                {
+                    iNewFirstValue = Int32.Parse(asInputLines[i]) + Int32.Parse(asInputLines[i+1]) + Int32.Parse(asInputLines[i+2]);
+                    iNewSecondValue = Int32.Parse(asInputLines[i+1]) + Int32.Parse(asInputLines[i+2]) + Int32.Parse(asInputLines[i+3]);
+                    iNewIncreases += iNewSecondValue > iNewFirstValue ? 1 : 0;
+                }
+            }
+
+            Console.WriteLine("Number of new increases = {0}", iNewIncreases);
+            #endregion
+
+        }
+    }
+}
